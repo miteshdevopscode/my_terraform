@@ -4,7 +4,7 @@ resource "aws_instance" "firstec2" {
   subnet_id                   = "${aws_subnet.main-public-2.id}"
   vpc_security_group_ids      = ["${aws_security_group.allow-ssh.id}"]
   associate_public_ip_address = "true"
-  key_name                    = "${aws_key_pair.demokey.key_name}"
+  key_name                    = "${aws_key_pair.my-demokey.id}"
 
   tags {
     Name = "firstec2"
