@@ -3,8 +3,9 @@ resource "aws_launch_configuration" "example-launchconfig" {
   image_id             = "${lookup(var.AMIS, var.AWS_REGION)}"
   instance_type        = "t2.micro"
   key_name             = "${aws_key_pair.my-demokey.key_name}"
+  iam_instance_profile = "${aws_iam_instance_profile.main.name}"
   security_groups      = ["${aws_security_group.myinstance.id}"]
-  user_data            = "#!/bin/bash\napt-get update\napt-get -y install nginx\nMYIP=`ifconfig | grep 'addr:10' | awk '{ print $2 }' | cut -d ':' -f2`\necho 'this is: '$MYIP > /var/www/html/index.html"
+  user_data            = "#!/bin/bash\napt-get update\napt-get -y install nginx\nrm -rf /var/wwww/html/*"
   lifecycle              { create_before_destroy = true }
 }
 
