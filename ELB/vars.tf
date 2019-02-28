@@ -23,6 +23,6 @@ variable "AMIS" {
   type = "map"
 
   default = {
-    us-east-1 = "ami-0f9cf087c1f27d9b1"
+    us-east-1 = "ami-0424882869fad5641"
   }
 }

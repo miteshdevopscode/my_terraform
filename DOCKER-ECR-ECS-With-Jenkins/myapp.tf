@@ -3,8 +3,8 @@
 data "template_file" "myapp-task-definition-template" {
   template               = "${file("templates/app.json.tpl")}"
   vars {
-    REPOSITORY_URL = "220425157014.dkr.ecr.us-east-1.amazonaws.com/myapp"
-    
+    REPOSITORY_URL = "${replace("${aws_ecr_repository.myapp.repository_url}", "https://", "")}"
+    APP_VERSION = "${var.MYAPP_VERSION}"
   }
 }
 
@@ -14,7 +14,6 @@ resource "aws_ecs_task_definition" "myapp-task-definition" {
 }
 
 resource "aws_ecs_service" "myapp-service" {
-  
   name = "myapp"
   cluster = "${aws_ecs_cluster.example-cluster.id}"
   task_definition = "${aws_ecs_task_definition.myapp-task-definition.arn}"
