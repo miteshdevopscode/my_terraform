@@ -3,8 +3,8 @@
 data "template_file" "myapp-task-definition-template" {
   template               = "${file("templates/app.json.tpl")}"
   vars {
-    REPOSITORY_URL = "${replace("${aws_ecr_repository.myapp.repository_url}", "https://", "")}"
-    APP_VERSION = "${var.MYAPP_VERSION}"
+    REPOSITORY_URL = "220425157014.dkr.ecr.us-east-1.amazonaws.com/myapp"
+    
   }
 }
 
